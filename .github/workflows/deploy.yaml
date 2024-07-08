@@ -23,7 +23,7 @@ jobs:
       - name: Deploy to GitHub Pages  # Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REACT_APP_GITHUB_ACCESS_TOKEN  }}
           filename: '**/*'  # Upload all built files
           cname: 'your-custom-domain.com'  # Optional: Set a custom domain (replace with your domain)
           source: ./build  # Path to the build output directory (replace if different)
