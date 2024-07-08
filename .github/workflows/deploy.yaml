@@ -1,0 +1,29 @@
+name: Deploy React App
+
+on:
+  push:
+    branches: [ master ]  # Trigger on push to the master branch (or your desired branch)
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # Run the workflow on Ubuntu virtual machines
+
+    steps:
+      - uses: actions/checkout@v3  # Checkout your code from the repository
+      - name: Use Node.js 16  # Specify the desired Node.js version
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16  # Replace with your desired version (check React compatibility)
+      - name: Install dependencies
+        run: npm install  # Install project dependencies
+
+      - name: Build React app
+        run: npm run build  # Build the app for production (replace with your build command)
+
+      - name: Deploy to GitHub Pages  # Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filename: '**/*'  # Upload all built files
+          cname: 'your-custom-domain.com'  # Optional: Set a custom domain (replace with your domain)
+          source: ./build  # Path to the build output directory (replace if different)
