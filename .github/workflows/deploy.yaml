@@ -22,8 +22,11 @@ jobs:
       - name: Build React app
         run: npm run build  # Build the app for production (replace with your build command)
 
+      - name: Disable Jekyll by creating a .nojekyll file
+        run: touch build/.nojekyll
+
       - name: Deploy to GitHub Pages  # Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.REACT_APP_GITHUB_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
