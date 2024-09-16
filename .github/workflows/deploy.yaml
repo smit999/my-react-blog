@@ -2,7 +2,7 @@ name: Deploy React App
 
 on:
   push:
-    branches: [ master ]  # Trigger on push to the master branch (or your desired branch)
+    branches: [ real-first-blog ]  # Trigger on push to the master branch (or your desired branch)
 
 permissions:
   contents: read
