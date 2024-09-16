@@ -4,16 +4,19 @@ on:
   push:
     branches: [ master ]  # Trigger on push to the master branch (or your desired branch)
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest  # Run the workflow on Ubuntu virtual machines
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Checkout your code from the repository
+        uses: actions/checkout@v3  # Checkout your code from the repository
       
-      - name: Use Node.js 16  # Specify the desired Node.js version
-        uses: actions/setup-node@v2
+      - name: Use Node.js 20  # Specify the desired Node.js version
+        uses: actions/setup-node@v3
         with:
           node-version: 16  # Replace with your desired version (check React compatibility)
       - name: Install dependencies
