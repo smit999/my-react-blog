@@ -12,6 +12,8 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest  # Run the workflow on Ubuntu virtual machines
+    env:
+      REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
 
     steps:
       - name: Checkout code
