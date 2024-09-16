@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest  # Run the workflow on Ubuntu virtual machines
 
     steps:
-      - uses: actions/checkout@v3  # Checkout your code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v2  # Checkout your code from the repository
+      
       - name: Use Node.js 16  # Specify the desired Node.js version
         uses: actions/setup-node@v2
         with:
@@ -21,9 +23,7 @@ jobs:
         run: npm run build  # Build the app for production (replace with your build command)
 
       - name: Deploy to GitHub Pages  # Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          token: ${{ secrets.REACT_APP_GITHUB_ACCESS_TOKEN  }}
-          filename: '**/*'  # Upload all built files
-          cname: 'your-custom-domain.com'  # Optional: Set a custom domain (replace with your domain)
-          source: ./build  # Path to the build output directory (replace if different)
+          github_token: ${{ secrets.REACT_APP_GITHUB_ACCESS_TOKEN }}
+          publish_dir: ./build
